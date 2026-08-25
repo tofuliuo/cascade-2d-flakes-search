@@ -1,0 +1,68 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python cache / build
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs / runtime
+*.log
+logs/
+xet/logs/
+
+# ML artifacts
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+
+# Local outputs / temp data
+output/
+outputs/
+results/
+runs/
+wandb/
+tmp/
+temp/
+hub/
+xet/
+*_results/
+
+# Keep the single-sample BF/DF input folders without tracking copied test images
+cascade code for single sample/BF and DF images for tests/BF/*
+!cascade code for single sample/BF and DF images for tests/BF/.gitkeep
+cascade code for single sample/BF and DF images for tests/DF/*
+!cascade code for single sample/BF and DF images for tests/DF/.gitkeep
+
+# Hugging Face / model cache folders
+models--*/
