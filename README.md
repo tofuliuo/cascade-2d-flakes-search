@@ -238,7 +238,43 @@ python "stage2 mit-b2 validation codes/stage2_mit-b2_visualization.py"
 
 The primary Stage 2 visualization loads both main checkpoints and writes its outputs under `stage2 validation codes/output/`.
 
-### 4.4 Ablation Study of Skip Connections
+### 4.4 Single-Stage Four-Class Comparison
+
+The single-stage comparison uses the original-scale ConvNeXt-Tiny U-Net with skip connections to directly predict background, single layer, contaminant, and multilayer, without a Stage 1 foreground mask. 
+
+#### Training
+
+```bash
+python "single stage (four-class classification) training codes/single_stage_training.py"
+```
+
+Training automatically records loss, IoU, and Dice for both training and validation, and writes the following files:
+
+```text
+single stage (four-class classification) training codes/convnext_tiny_single_stage_results/
+|-- best_convnext_tiny_single_stage.pth   # Best validation checkpoint
+|-- final_convnext_tiny_single_stage.pth  # Final checkpoint
+|-- training_history.png                # Four panels: loss, IoU, Dice, validation IoU/Dice
+`-- training_history.xlsx               # Seven columns: epoch and six training/validation metrics; best metrics summary
+```
+
+#### Evaluation
+
+```bash
+python "single stage (four-class classification) training codes/single_stage_evaluation.py"
+```
+
+The evaluator loads the best checkpoint and writes Single Layer IoU, Dice, precision, recall, and F1 to `single stage (four-class classification) training codes/convnext_tiny_single_stage_results/evaluation_results.txt`.
+
+#### Visualization
+
+```bash
+python "single stage validation codes/single_stage_visualization.py"
+```
+
+Results are written to `single stage validation codes/output/`. Each input image produces `<name>_overlay.png` (segmentation overlay) and `<name>_mask.png` (binary Single Layer mask), both at 512 x 512 pixels.
+
+### 4.5 Ablation Study of Skip Connections
 
 The ablation models remove the skip connections from the Stage 1 and Stage 2 networks. The supplied checkpoint package includes both ablation checkpoints, so users who do not need to reproduce training may run only the evaluation commands.
 
