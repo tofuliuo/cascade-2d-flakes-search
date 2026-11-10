@@ -92,15 +92,15 @@ Our models use the same optimization settings for Stage 1 and Stage 2. The share
 
 Our Stage 1 and Stage 2 segmentation models use a U-Net-style encoder-decoder architecture with skip connections, in which ConvNeXt-Tiny serves as the encoder backbone.
 
-| Hyperparameter | Value |
-| --- | --- |
-| Optimizer | AdamW (`beta1 = 0.9`, `beta2 = 0.999`) |
-| Initial learning rate | `1 x 10^-4` |
-| Weight decay | `1 x 10^-4` |
-| Batch size | `4` |
-| Number of epochs | `50` |
-| Learning rate scheduling | Warm-up for 5 epochs, followed by cosine annealing |
-| Image data augmentation | Random horizontal/vertical flips, 90-degree rotation, rotation (+/-15 degrees), scaling (+/-10%), brightness/contrast adjustment, Gaussian blur, elastic deformation, and Gaussian noise |
+| Hyperparameter           | Value                                                        |
+| ------------------------ | ------------------------------------------------------------ |
+| Optimizer                | AdamW (`beta1 = 0.9`, `beta2 = 0.999`)                       |
+| Initial learning rate    | `1 x 10^-4`                                                  |
+| Weight decay             | `1 x 10^-4`                                                  |
+| Batch size               | `4`                                                          |
+| Number of epochs         | `50`                                                         |
+| Learning rate scheduling | Warm-up for 5 epochs, followed by cosine annealing           |
+| Image data augmentation  | Random horizontal/vertical flips, 90-degree rotation, rotation (+/-15 degrees), scaling (+/-10%), brightness/contrast adjustment, Gaussian blur, elastic deformation, and Gaussian noise |
 
 
 
@@ -232,11 +232,11 @@ python "stage2 mit-b2 validation codes/stage2_mit-b2_visualization.py"
 
 The primary Stage 2 visualization loads both main checkpoints and writes its outputs under `stage2 validation codes/output/`.
 
-### 5.4 Comparison of single-stage quattronary classification
+### 5.4 Comparison of single-stage quaternary classification
 
 The single-stage comparison uses the original-scale ConvNeXt-Tiny U-Net with skip connections to directly predict background, single layer, contaminant, and multilayer, without a Stage 1 foreground mask. 
 
-#### 5.4.1 Training our single-stage quattronary model
+#### 5.4.1 Training our single-stage quaternary model
 
 ```bash
 python "single stage (four-class classification) training codes/single_stage_training.py"
@@ -252,7 +252,7 @@ single stage (four-class classification) training codes/convnext_tiny_single_sta
 `-- training_history.xlsx               # Seven columns: epoch and six training/validation metrics; best metrics summary
 ```
 
-#### 5.4.2 Performance evaluation of our single-stage quattronary model
+#### 5.4.2 Performance evaluation of our single-stage quaternary model
 
 ```bash
 python "single stage (four-class classification) training codes/single_stage_evaluation.py"
@@ -260,7 +260,7 @@ python "single stage (four-class classification) training codes/single_stage_eva
 
 The evaluator loads the best checkpoint and writes Single Layer IoU, Dice, precision, recall, and F1 to `single stage (four-class classification) training codes/convnext_tiny_single_stage_results/evaluation_results.txt`.
 
-#### 5.4.3 Validation results of our single-stage quattronary model
+#### 5.4.3 Validation results of our single-stage quaternary model
 
 ```bash
 python "single stage validation codes/single_stage_visualization.py"
